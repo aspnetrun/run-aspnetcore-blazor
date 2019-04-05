@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Infrastructure.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Application.Tests", "test\AspnetRun.Application.Tests\AspnetRun.Application.Tests.csproj", "{0889FF01-29BA-4387-A64C-2E60199C9544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspnetRun.Web", "src\AspnetRun.Web\AspnetRun.Web.csproj", "{FFD0D787-7CC0-4CC1-A67B-BD1785E9DAAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRun.Web", "src\AspnetRun.Web\AspnetRun.Web.csproj", "{FFD0D787-7CC0-4CC1-A67B-BD1785E9DAAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
