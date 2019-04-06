@@ -39,5 +39,10 @@ namespace AspnetRun.Core.Entities
 
             _comments = new Collection<IssueComment>();
         }
+
+        public void AssignTo([Required] User user, [Required] IIssueAssignmentPolicy policy)
+        {
+
+        }
     }
 }
