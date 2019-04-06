@@ -24,5 +24,10 @@ namespace AspnetRun.Core.Entities
         {
 
         }
+
+        public Issue(int creatorUserId, string title, string body = null)
+        {
+
+        }
     }
 }
