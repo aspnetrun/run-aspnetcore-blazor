@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
@@ -27,7 +28,16 @@ namespace AspnetRun.Core.Entities
 
         public Issue(int creatorUserId, string title, string body = null)
         {
+            Check.NotNull(creatorUserId, nameof(creatorUserId));
+            Check.NotNull(title, nameof(title));
 
+            // Id = Guid.NewGuid().ToString("D");
+
+            CreatorUserId = creatorUserId;
+            Title = title;
+            Body = body;
+
+            _comments = new Collection<IssueComment>();
         }
     }
 }
