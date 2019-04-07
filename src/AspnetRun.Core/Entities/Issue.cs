@@ -71,5 +71,36 @@ namespace AspnetRun.Core.Entities
             return comment;
         }
 
+        public void Close(IssueCloseReason reason)
+        {
+            CloseReason = reason;
+            IsClosed = true;
+        }
+
+        public void ReOpen()
+        {
+            IsClosed = false;
+            CloseReason = null;
+        }
+
+        public void Lock()
+        {
+            if (!IsClosed)
+            {
+                throw new InvalidOperationException("An open issue can not be locked. Should be closed first!");
+            }
+
+            IsLocked = true;
+        }
+
+        public void Unlock()
+        {
+            IsLocked = false;
+        }
+
+        public override string ToString()
+        {
+            return $"[Issue {Id}] {Title}";
+        }
     }
 }
