@@ -42,6 +42,8 @@ namespace AspnetRun.Core.Entities
 
         public void AssignTo([Required] User user, [Required] IIssueAssignmentPolicy policy)
         {
+            Check.NotNull(user, nameof(user));
+            Check.NotNull(policy, nameof(policy));
 
         }
     }
