@@ -50,5 +50,25 @@ namespace AspnetRun.Core.Entities
 
             AssignedUserId = user.Id;
         }
+
+        public void ClearAssignment()
+        {
+            AssignedUserId = 0;
+        }
+
+        public IssueComment AddComment(User creatorUser, string message)
+        {
+            Check.NotNull(creatorUser, nameof(creatorUser));
+
+            if (IsLocked)
+            {
+                throw new IssueLockedException(Id);
+            }
+
+            var comment = new IssueComment(creatorUser.Id, message);
+            _comments.Add(comment);
+            return comment;
+        }
+
     }
 }
