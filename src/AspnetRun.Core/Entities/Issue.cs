@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AspnetRun.Core.Policy;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
@@ -15,8 +16,8 @@ namespace AspnetRun.Core.Entities
         public bool IsClosed { get; set; }
         public bool IsLocked { get; set; }
         public IssueCloseReason? CloseReason { get; set; }
-        public int CreatorUserId { get; set; }
-        public int AssignedUserId { get; set; }
+        public int CreatorUserId { get; protected set; }
+        public int AssignedUserId { get; protected set; }
 
         public IReadOnlyList<IssueComment> Comments => _comments.ToImmutableList();
         protected virtual ICollection<IssueComment> _comments { get; set; }
@@ -45,6 +46,9 @@ namespace AspnetRun.Core.Entities
             Check.NotNull(user, nameof(user));
             Check.NotNull(policy, nameof(policy));
 
+            policy.CheckAssignment(this, user);
+
+            AssignedUserId = user.Id;
         }
     }
 }
