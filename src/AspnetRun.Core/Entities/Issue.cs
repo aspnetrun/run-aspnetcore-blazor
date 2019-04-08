@@ -12,23 +12,23 @@ namespace AspnetRun.Core.Entities
     public class Issue : BaseEntity
     {
         [Required]
-        public string Title { get; set; }
-        public string Body { get; set; }
-        public bool IsClosed { get; set; }
-        public bool IsLocked { get; set; }
-        public IssueCloseReason? CloseReason { get; set; }
+        public string Title { get; protected set; }
+        public string Body { get; protected set; }
+        public bool IsClosed { get; protected set; }
+        public bool IsLocked { get; protected set; }
+        public IssueCloseReason? CloseReason { get; protected set; }
+        [Required]
         public int CreatorUserId { get; protected set; }
+        [Required]
         public int AssignedUserId { get; protected set; }
-
         public IReadOnlyList<IssueComment> Comments => _comments.ToImmutableList();
         protected virtual ICollection<IssueComment> _comments { get; set; }
 
         protected Issue()
         {
-
         }
 
-        public Issue(int creatorUserId, string title, string body = null)
+        public Issue([Required] int creatorUserId, [Required] string title, string body = null)
         {
             Check.NotNull(creatorUserId, nameof(creatorUserId));
             Check.NotNull(title, nameof(title));
@@ -57,7 +57,7 @@ namespace AspnetRun.Core.Entities
             AssignedUserId = 0;
         }
 
-        public IssueComment AddComment(User creatorUser, string message)
+        public IssueComment AddComment([Required] User creatorUser, [Required] string message)
         {
             Check.NotNull(creatorUser, nameof(creatorUser));
 
