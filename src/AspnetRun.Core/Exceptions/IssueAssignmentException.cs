@@ -1,7 +1,10 @@
 ﻿namespace AspnetRun.Core.Exceptions
 {
-    class IssueAssignmentException
+    public class IssueAssignmentException : CoreException
     {
-
+        public IssueAssignmentException(string message)
+            : base(message)
+        {
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AspnetRun.Core.Entities;
+using AspnetRun.Core.Exceptions;
 using AspnetRun.Core.Interfaces;
 
 namespace AspnetRun.Core.Policy
@@ -21,7 +22,7 @@ namespace AspnetRun.Core.Policy
         {
             if(_issueRepository.GetOpenIssueCountOfUser(user.Id) >= _configuration.MaxConcurrentOpenIssueCountForAUser)
             {
-                throw new 
+                throw new IssueAssignmentException($"Can not assign more than {_configuration.MaxConcurrentOpenIssueCountForAUser} open issues to a user!");
             }
         }
     }
