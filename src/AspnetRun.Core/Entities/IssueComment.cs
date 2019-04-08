@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace AspnetRun.Core.Entities
 {
     public class IssueComment : BaseEntity
     {
-        public string Message { get; set; }
-        public int CreatorUserId { get; set; }
-        public IssueComment(int creatorUserId, string message)
+        [Required]
+        public string Message { get; protected set; }
+        [Required]
+        public int CreatorUserId { get; protected set; }
+        public IssueComment([Required] int creatorUserId, [Required] string message)
         {
             Check.NotNull(creatorUserId, nameof(creatorUserId));
             Check.NotNull(message, nameof(message));
