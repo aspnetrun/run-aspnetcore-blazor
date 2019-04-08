@@ -7,7 +7,7 @@ namespace AspnetRun.Core.Interfaces
 {
     public interface IIssueRepository : IAsyncRepository<Issue>
     {
-        int GetOpenIssueCountOfUser(string userId);
+        int GetOpenIssueCountOfUser(int userId);
         List<Issue> GetCommentsWithCreatorUsers(int issueId);
     }
 }

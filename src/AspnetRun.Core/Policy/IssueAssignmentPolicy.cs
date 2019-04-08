@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AspnetRun.Core.Entities;
+using AspnetRun.Core.Interfaces;
 
 namespace AspnetRun.Core.Policy
 {
@@ -18,7 +19,10 @@ namespace AspnetRun.Core.Policy
 
         public void CheckAssignment(Issue issue, User user)
         {
-            throw new NotImplementedException();
+            if(_issueRepository.GetOpenIssueCountOfUser(user.Id) >= _configuration.MaxConcurrentOpenIssueCountForAUser)
+            {
+                throw new 
+            }
         }
     }
 }
