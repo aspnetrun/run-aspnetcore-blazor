@@ -10,3 +10,12 @@ New .Net Core 3.0 Asp.Net Razor Components SPA Web Application.
 
 * **[run-aspnetcore-spa](https://github.com/aspnetrun/run-aspnetcore-spa)** - intented to building Single-Page Web Applications(SPA) using ASP.NET Core & EF.Core and **Razor Components** templates with new aspnet core server-side rendering approach and build real-time communication with SignalR. **YOU ARE HERE.**
 
+This repository is **under development**. It is **not finished yet**.
+It will become issue tracker system Real world example of run-core based application.
+
+* spa
+* razor components
+* identity
+* validation
+* exception management
+* issue tracker use cases like github
