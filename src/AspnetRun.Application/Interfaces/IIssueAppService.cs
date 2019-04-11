@@ -1,4 +1,6 @@
-﻿namespace AspnetRun.Application.Interfaces
+﻿using AspnetRun.Application.Dtos.Issue;
+
+namespace AspnetRun.Application.Interfaces
 {
     public interface IIssueAppService
     {
