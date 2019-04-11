@@ -12,5 +12,6 @@ namespace AspnetRun.Application.Dtos
         public bool IsLocked { get; set; }
         public string CloseReason { get; set; }
         public UserDto CreatorUser { get; set; }
+        public List<IssueCommentDto> Comments { get; set; }
     }
 }
