@@ -1,11 +1,12 @@
 ﻿using AspnetRun.Application.Dtos.Issue;
+using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Interfaces
 {
     public interface IIssueAppService
     {
-        void AssignIssueToUser(AssignIssueToUserInput input);
-        void AddComment(AddCommentInput input);
-        GetIssueOutput GetIssue(GetIssueInput input);
+        Task AssignIssueToUser(AssignIssueToUserInput input);
+        Task AddComment(AddCommentInput input);
+        Task<GetIssueOutput> GetIssue(GetIssueInput input);
     }
 }

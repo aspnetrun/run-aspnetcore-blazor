@@ -1,6 +1,8 @@
 ﻿using AspnetRun.Application.Authorization;
+using AspnetRun.Application.Dtos;
 using AspnetRun.Application.Dtos.Issue;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Mapper;
 using AspnetRun.Application.Notification;
 using AspnetRun.Application.Session;
 using AspnetRun.Application.Validation;
@@ -8,6 +10,7 @@ using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using AspnetRun.Core.Policy;
 using System;
+using System.Threading.Tasks;
 
 namespace AspnetRun.Application.Services
 {
@@ -37,7 +40,7 @@ namespace AspnetRun.Application.Services
             SessionService = NullSessionService.Instance;
         }
 
-        public async void AssignIssueToUser(AssignIssueToUserInput input)
+        public async Task AssignIssueToUser(AssignIssueToUserInput input)
         {
             // authorization
             AuthorizationService.CheckPermission("TaskAssignmentPermission");
@@ -63,7 +66,7 @@ namespace AspnetRun.Application.Services
             _logger.LogInformation($"Assigned issue {issue} to user {user}");            
         }
 
-        public async void AddComment(AddCommentInput input)
+        public async Task AddComment(AddCommentInput input)
         {
             AuthorizationService.CheckPermission("AddComment", input.IssueId);
             _validationService.Validate(input);
@@ -77,16 +80,31 @@ namespace AspnetRun.Application.Services
             _userEmailer.AddedIssueComment(currentUser, issue, comment);
         }
 
-        public GetIssueOutput GetIssue(GetIssueInput input)
+        public async Task<GetIssueOutput> GetIssue(GetIssueInput input)
         {
-            throw new NotImplementedException();
-        }
+            AuthorizationService.CheckLogin();
+            _validationService.Validate(input);
 
-        //public async Task<IEnumerable<CategoryDto>> GetCategoryList()
+            var issue = await _issueRepository.GetByIdAsync(input.Id);
+
+            return new GetIssueOutput
+            {
+                Issue = ObjectMapper.Mapper.Map<IssueDto>(issue),
+                //Comments = GetIssueCommentDtos(issue.Id)
+            };
+        }       
+
+        //private List<IssueCommentDto> GetIssueCommentDtos(string issueId)
         //{
-        //    var category = await _categoryRepository.GetAllAsync();
-        //    var mapped = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(category);
-        //    return mapped;
+        //    return _issueRepository
+        //        .GetCommentsWithCreatorUsers(issueId)
+        //        .Select(c =>
+        //        {
+        //            var commentDto = _objectMapper.Map<IssueCommentDto>(c.Comment);
+        //            commentDto.CreatorUser = _objectMapper.Map<BasicUserDto>(c.CreatorUser);
+        //            return commentDto;
+        //        })
+        //        .ToList();
         //}
     }
 }
