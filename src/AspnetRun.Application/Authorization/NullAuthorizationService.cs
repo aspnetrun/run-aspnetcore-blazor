@@ -17,7 +17,7 @@ namespace AspnetRun.Application.Authorization
 
         }
 
-        public void CheckPermission(string permissionName, string entityId)
+        public void CheckPermission(string permissionName, int entityId)
         {
 
         }

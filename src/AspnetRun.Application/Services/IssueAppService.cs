@@ -63,11 +63,20 @@ namespace AspnetRun.Application.Services
             _logger.LogInformation($"Assigned issue {issue} to user {user}");            
         }
 
-        public void AddComment(AddCommentInput input)
+        public async void AddComment(AddCommentInput input)
         {
-            throw new NotImplementedException();
+            AuthorizationService.CheckPermission("AddComment", input.IssueId);
+            _validationService.Validate(input);
+
+            var currentUser = await _userRepository.GetByIdAsync(SessionService.UserId);
+            var issue = await _issueRepository.GetByIdAsync(input.IssueId);
+
+            var comment = issue.AddComment(currentUser, input.Message);
+            await _issueRepository.UpdateAsync(issue);
+
+            _userEmailer.AddedIssueComment(currentUser, issue, comment);
         }
-        
+
         public GetIssueOutput GetIssue(GetIssueInput input)
         {
             throw new NotImplementedException();
