@@ -1,5 +1,6 @@
 ﻿using AspnetRun.Application.Dtos.Issue;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Application.Validation;
 using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using System;
