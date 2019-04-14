@@ -6,6 +6,6 @@ namespace AspnetRun.Application.Session
 {
     public interface ISessionService
     {
-        string UserId { get; set; }
+        int UserId { get; set; }
     }
 }
