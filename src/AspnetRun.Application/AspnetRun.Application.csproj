@@ -12,8 +12,4 @@
     <ProjectReference Include="..\AspnetRun.Core\AspnetRun.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Session\" />
-  </ItemGroup>
-
 </Project>
