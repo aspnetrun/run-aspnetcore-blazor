@@ -12,4 +12,9 @@
     <ProjectReference Include="..\AspnetRun.Core\AspnetRun.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validation\" />
+    <Folder Include="Session\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 ﻿using AspnetRun.Application.Dtos.Issue;
 using AspnetRun.Application.Interfaces;
+using AspnetRun.Core.Entities;
 using AspnetRun.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,15 @@ namespace AspnetRun.Application.Services
     public class IssueAppService : IIssueAppService
     {        
         private readonly IIssueRepository _issueRepository;
+        private readonly IAsyncRepository<User> _userRepository;
+
+        private readonly IValidationService _validationService;        
         private readonly IAppLogger<IssueAppService> _logger;
+        private readonly IUserEmailer _userEmailer;
+
+        public IAuthorizationService AuthorizationService { get; set; }
+        public ISessionService SessionService { get; set; }        
+
 
         public IssueAppService(IIssueRepository issueRepository, IAppLogger<IssueAppService> logger)
         {
@@ -26,7 +35,7 @@ namespace AspnetRun.Application.Services
         public void AssignIssueToUser(AssignIssueToUserInput input)
         {
             throw new NotImplementedException();
-        }       
+        }
 
         public GetIssueOutput GetIssue(GetIssueInput input)
         {
