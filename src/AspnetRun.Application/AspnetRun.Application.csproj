@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validation\" />
     <Folder Include="Session\" />
   </ItemGroup>
 
